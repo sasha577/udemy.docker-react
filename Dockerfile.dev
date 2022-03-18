@@ -1,0 +1,16 @@
+FROM node:alpine
+
+USER root
+
+RUN mkdir -p '/app' && chown -R node '/app'
+
+USER node
+
+WORKDIR '/app'
+
+COPY package.json .
+RUN npm install .
+
+COPY . .
+
+CMD ["npm", "run", "start"]
